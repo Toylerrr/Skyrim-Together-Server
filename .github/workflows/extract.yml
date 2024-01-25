@@ -22,3 +22,7 @@ jobs:
         image: tiltedphoques/st-reborn-server:latest
         path: /home/server/.
         destination: dist
+    - name: Upload Dist
+      uses: actions/upload-artifact@v3
+      with:
+        path: dist
