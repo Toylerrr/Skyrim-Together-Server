@@ -20,5 +20,5 @@ jobs:
       uses: shrink/actions-docker-extract@v3.0.0
       with:
         image: tiltedphoques/st-reborn-server:latest
-        path: /home/server/SkyrimTogetherServer
+        path: /home/server/.
         destination: ./  # Copy files to the main GitHub repository folder
