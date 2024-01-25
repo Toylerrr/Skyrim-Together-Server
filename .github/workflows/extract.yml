@@ -20,7 +20,7 @@ jobs:
       run: docker create --name temp_container docker pull tiltedphoques/st-reborn-server:latest
 
     - name: Copy File from Container to Workspace
-      run: docker cp temp_container:/home/server/SkyrimTogetherServer ./
+      run: docker cp temp_container:/home/server/ ./
 
     - name: Remove Temporary Container
       run: docker rm temp_container
