@@ -21,4 +21,4 @@ jobs:
       with:
         image: tiltedphoques/st-reborn-server:latest
         path: /home/server/SkyrimTogetherServer
-        destination: ./extracted-files
+        destination: ./  # Copy files to the main GitHub repository folder
