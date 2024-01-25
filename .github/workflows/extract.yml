@@ -21,4 +21,4 @@ jobs:
       with:
         image: tiltedphoques/st-reborn-server:latest
         path: /home/server/.
-        destination: ./  # Copy files to the main GitHub repository folder
+        destination: dist
