@@ -16,11 +16,9 @@ jobs:
     - name: Pull Docker Image
       run: docker pull tiltedphoques/st-reborn-server:latest
 
-    - name: Create Temporary Container
-      run: docker create --name temp_container docker pull tiltedphoques/st-reborn-server:latest
-
-    - name: Copy File from Container to Workspace
-      run: docker cp temp_container:/home/server/SkyrimTogetherServer ./
-
-    - name: Remove Temporary Container
-      run: docker rm temp_container
+    - name: Use Docker Extract Action
+      uses: shrink/actions-docker-extract@v3.0.0
+      with:
+        image: tiltedphoques/st-reborn-server:latest
+        path: /home/server/SkyrimTogetherServer
+        destination: ./extracted-files
