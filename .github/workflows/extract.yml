@@ -1,0 +1,26 @@
+name: Extract File from Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  extract_file:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Pull Docker Image
+      run: docker pull tiltedphoques/st-reborn-server:latest
+
+    - name: Create Temporary Container
+      run: docker create --name temp_container docker pull tiltedphoques/st-reborn-server:latest
+
+    - name: Copy File from Container to Workspace
+      run: docker cp temp_container:/home/server/SkyrimTogetherServer ./
+
+    - name: Remove Temporary Container
+      run: docker rm temp_container
