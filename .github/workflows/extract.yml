@@ -1,9 +1,13 @@
 name: Extract File from Docker Image
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      trigger:
+        description: 'Trigger the workflow'
+        required: true
+        default: 'manual'
+        # You can add more inputs if needed
 
 jobs:
   extract_file:
@@ -33,8 +37,3 @@ jobs:
         git add .
         git commit -m "Add extracted files"
         git push
-
-    - name: Upload Dist
-      uses: actions/upload-artifact@v3
-      with:
-        path: dist
