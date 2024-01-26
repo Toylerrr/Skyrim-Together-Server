@@ -16,13 +16,6 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
-    - name: Remove Unwanted Files
-      run: |
-        rm -rf "$GITHUB_WORKSPACE/SkyrimTogetherServer"
-        rm -rf "$GITHUB_WORKSPACE/crashpad_handler"
-        rm -rf "$GITHUB_WORKSPACE/libSTServer.so"
-        rm -rf "$GITHUB_WORKSPACE/libstdc++.so.6"
-
     - name: Pull Docker Image
       run: docker pull tiltedphoques/st-reborn-server:latest
 
