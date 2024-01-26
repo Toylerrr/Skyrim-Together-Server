@@ -1,0 +1,38 @@
+name: Release Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      trigger:
+        description: 'Trigger the workflow'
+        required: true
+        default: 'manual'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Docker
+      uses: docker/setup-docker@v2
+
+    - name: Pull Docker image
+      run: docker pull tiltedphoques/st-reborn-server:latest
+
+    - name: Create release
+      run: |
+        docker run --name st-reborn-server-container tiltedphoques/st-reborn-server:latest
+        docker cp st-reborn-server-container:/home/server/. /github/workspace/
+        docker rm st-reborn-server-container
+
+    - name: Create release archive
+      run: tar -czf release.tar.gz -C /github/workspace/ .
+
+    - name: Upload release
+      uses: actions/upload-artifact@v2
+      with:
+        name: release
+        path: release.tar.gz
