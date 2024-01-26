@@ -26,3 +26,11 @@ jobs:
         image: tiltedphoques/st-reborn-server:latest
         path: /home/server/.
         destination: $GITHUB_WORKSPACE/
+
+    - name: Commit and Push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git commit -m "Add extracted files"
+        git push
