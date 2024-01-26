@@ -22,6 +22,18 @@ jobs:
         image: tiltedphoques/st-reborn-server:latest
         path: /home/server/.
         destination: dist
+
+    - name: Copy files to Repository
+      run: cp -r dist/* $GITHUB_WORKSPACE/
+
+    - name: Commit and Push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git commit -m "Add extracted files"
+        git push
+
     - name: Upload Dist
       uses: actions/upload-artifact@v3
       with:
